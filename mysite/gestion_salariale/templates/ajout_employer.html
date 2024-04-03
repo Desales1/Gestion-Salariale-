@@ -1,0 +1,81 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<form method="post" class="settings-form">
+    {% csrf_token %}
+    <div class="app-wrapper">
+        <div class="app-content pt-3 p-md-3 p-lg-4">
+            <div class="container-xl">              
+                <h1 class="app-page-title">Employer</h1>
+                <hr class="mb-4">
+                <div class="row g-4 settings-section">
+                    <div class="col-12 col-md-4">
+                        <h3 class="section-title">Ajout</h3>
+                        <div class="section-intro">Ajouter ici un nouvel employé.</div>
+                        <!-- Affichage des erreurs -->
+                        {% if form.errors %}
+                            <div class="alert alert-danger">
+                                {% for field, error_list in form.errors.items %}
+                                    {% for error in error_list %}
+                                        {{ error }}
+                                    {% endfor %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="col-12 col-md-8">
+                        <div class="app-card app-card-settings shadow-sm p-4">
+                            <div class="app-card-body">
+                                <div class="mb-3">
+                                    <label for="id_departement" class="form-label">Département</label>
+                                    {{ form.departement }}
+                                    {% for error in form.departement.errors %}
+                                        <div class="invalid-feedback">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="id_nom" class="form-label">Nom</label>
+                                    {{ form.nom }}
+                                    {% for error in form.nom.errors %}
+                                        <div class="invalid-feedback">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="id_prenom" class="form-label">Prénom</label>
+                                    {{ form.prenom }}
+                                    {% for error in form.prenom.errors %}
+                                        <div class="invalid-feedback">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="id_email" class="form-label">Email</label>
+                                    {{ form.email }}
+                                    {% for error in form.email.errors %}
+                                        <div class="invalid-feedback">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="id_contact" class="form-label">Contact</label>
+                                    {{ form.contact }}
+                                    {% for error in form.contact.errors %}
+                                        <div class="invalid-feedback">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="id_montant_journalier" class="form-label">Montant journalier</label>
+                                    {{ form.montant_journalier }}
+                                    {% for error in form.montant_journalier.errors %}
+                                        <div class="invalid-feedback">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                                <button type="submit" class="btn app-btn-primary">Ajouter</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}
